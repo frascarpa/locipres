@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import { FunctionComponent, useContext, useRef, useState } from 'react'
 import { ThreeElements, useFrame } from '@react-three/fiber'
 import { Quaternion } from 'three'
 import { GyroContext } from './gyro'
@@ -13,7 +13,7 @@ interface BoxProps {
 
 }
 
-export const Box: React.FunctionComponent<BoxProps> = (props) => {
+export const Box: FunctionComponent<BoxProps> = (props) => {
   // This reference gives us direct access to the THREE.Mesh object
   const ref = useRef<ThreeElements['mesh']>()
 

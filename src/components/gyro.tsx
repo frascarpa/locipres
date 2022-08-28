@@ -36,9 +36,9 @@ export const Gyro = (props: PropsWithChildren<GyroProps>) => {
       updateMesh()
     })
 
-    Promise.all([navigator.permissions.query({ name: 'accelerometer' }),
-    navigator.permissions.query({ name: 'magnetometer' }),
-    navigator.permissions.query({ name: 'gyroscope' })])
+    Promise.all([navigator.permissions.query({ name: 'accelerometer' as PermissionName }),
+      navigator.permissions.query({ name: 'magnetometer' as PermissionName }),
+      navigator.permissions.query({ name: 'gyroscope' as PermissionName })])
       .then((results) => {
         console.log('asked for sensor permission', results)
         if (results.every((result) => result.state === 'granted')) {
@@ -48,7 +48,7 @@ export const Gyro = (props: PropsWithChildren<GyroProps>) => {
           console.log('No permissions to use AbsoluteOrientationSensor.')
         }
       })
-  }, [])
+  }, [props.frequency])
 
   return (
     <GyroContext.Provider value={quaternion}>

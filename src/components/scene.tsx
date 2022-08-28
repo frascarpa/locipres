@@ -1,7 +1,7 @@
-import React from 'react'
 import { Canvas } from '@react-three/fiber'
+import { FunctionComponent } from 'react'
 
-export const Scene: React.FunctionComponent = (props) => {
+export const Scene: FunctionComponent = (props) => {
   return (
     <Canvas style={Object.assign({}, { 'touch-action': 'none' })}>
       <color attach='background' args={['#141414']} />

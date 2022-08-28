@@ -2,7 +2,7 @@ import { Scene } from '@/components/scene'
 import { Box } from '@/components/box'
 import { Link } from 'react-router-dom'
 
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { Canvas, ThreeElements, useFrame } from '@react-three/fiber'
 import { useGLTF, PresentationControls, Environment, ContactShadows, Html } from '@react-three/drei'
 import { Watch } from '@/components/watch'
