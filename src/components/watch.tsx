@@ -1,6 +1,7 @@
 import { useGLTF } from '@react-three/drei'
 import { ThreeElements, useFrame } from '@react-three/fiber'
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
+import { GyroContext } from './gyro'
 
 interface WatchProps {
   oscillate?: boolean;
@@ -9,6 +10,7 @@ interface WatchProps {
 export function Watch(props: React.PropsWithChildren<WatchProps & ThreeElements['mesh']>) {
   const ref = useRef<ThreeElements['mesh']>()
   const gltf = useGLTF('/watch-v1.glb')
+  const quaternion = useContext(GyroContext)
 
   useFrame((state) => {
     if (!ref?.current) {
@@ -24,6 +26,6 @@ export function Watch(props: React.PropsWithChildren<WatchProps & ThreeElements[
     }
   })
   return (
-    <primitive {...props} ref={ref} object={gltf.scene} />
+    <primitive {...props} ref={ref} object={gltf.scene} quaternion={quaternion} />
   )
 }
