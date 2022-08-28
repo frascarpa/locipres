@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { ThreeElements, useFrame } from '@react-three/fiber'
+import { Quaternion } from 'three'
 
 interface BoxProps {
   scale?: number;
@@ -8,6 +9,7 @@ interface BoxProps {
   initialRotation?: [number, number, number];
   autorotate?: 'x' | 'y' | 'z';
   autorotateSpeed?: number;
+  quaternion?: Quaternion
 
 }
 
@@ -31,6 +33,7 @@ export const Box: React.FunctionComponent<BoxProps> = (props) => {
       scale={props.scale ?? 1}
       rotation={props.initialRotation ?? [0, 0, 0]}
       position={props.position ?? [0, 0, 0]}
+      quaternion={props.quaternion}
     >
       <boxGeometry args={props.size ?? [1, 1, 1]} />
       <meshNormalMaterial color={hovered ? 'hotpink' : 'orange'} />

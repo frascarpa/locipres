@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 
 export const Scene: React.FunctionComponent = (props) => {
   return (
-    <Canvas>
+    <Canvas style={Object.assign({}, { 'touch-action': 'none' })}>
       <color attach='background' args={['#141414']} />
       <StaticLights />
       {props.children}
