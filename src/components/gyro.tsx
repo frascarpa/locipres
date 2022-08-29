@@ -21,10 +21,15 @@ export const Gyro = (props: PropsWithChildren<GyroProps>) => {
         return
       }
 
-      const patchedQuaternion = [...sensor.quaternion]
-      patchedQuaternion[4] = 0 // patch compass behaviour
+      // patching the angle to remove "compass behaviour"
+      const euler = (new Euler()).setFromQuaternion(new Quaternion(...sensor.quaternion))
+      const patchedX = (Math.cos(euler.z) * euler.x) + (Math.sin(euler.z) * euler.y) //* Math.sin(magnitude)
+      const patchedY = (Math.cos(-euler.z) * euler.y) + (Math.sin(-euler.z) * euler.x) //* Math.sin(magnitude)
 
-      const newQuaternion = new Quaternion().fromArray(patchedQuaternion)
+      const patchedEuler = new Euler(patchedX, patchedY, 0)
+
+      const newQuaternion = (new Quaternion()).setFromEuler(patchedEuler)
+
       setQuaternion(
         newQuaternion,
       )
@@ -36,7 +41,8 @@ export const Gyro = (props: PropsWithChildren<GyroProps>) => {
       updateMesh()
     })
 
-    Promise.all([navigator.permissions.query({ name: 'accelerometer' as PermissionName }),
+    Promise.all([
+      navigator.permissions.query({ name: 'accelerometer' as PermissionName }),
       navigator.permissions.query({ name: 'magnetometer' as PermissionName }),
       navigator.permissions.query({ name: 'gyroscope' as PermissionName })])
       .then((results) => {
