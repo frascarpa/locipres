@@ -3,6 +3,8 @@ import { Euler, Group, Quaternion, Vector3 } from 'three'
 import { Gyro, GyroContext } from './gyro'
 
 interface ParallaxProps {
+  influence?: number;
+  layerDistance: number;
   layerMap: {
     foreground1?: JSX.Element
     foreground0?: JSX.Element
@@ -15,10 +17,8 @@ interface ParallaxProps {
 type LayerModifier = { position: Group['position'] };
 type LayerMap3D = Record<keyof ParallaxProps['layerMap'], LayerModifier>
 
-function computeParallax(quaternion: Quaternion): LayerMap3D {
+function computeParallax(quaternion: Quaternion, layerDistance: number, influence: number): LayerMap3D {
   const euler = (new Euler()).setFromQuaternion(quaternion)
-
-  const influence = 0.5
 
   const xOffset = influence * Math.sin(euler.y * Math.PI)
 
@@ -26,19 +26,19 @@ function computeParallax(quaternion: Quaternion): LayerMap3D {
 
   return {
     foreground1: {
-      position: new Vector3(xOffset, 0, 4),
+      position: new Vector3(xOffset, 0, 2 * layerDistance),
     },
     foreground0: {
-      position: new Vector3(xOffset * 0.5, 0, 2),
+      position: new Vector3(xOffset * 0.5, 0, layerDistance),
     },
     center: {
       position: new Vector3(0, 0, 0),
     },
     background0: {
-      position: new Vector3(-xOffset * 0.5, 0, -2),
+      position: new Vector3(-xOffset * 0.5, 0, -layerDistance),
     },
     background1: {
-      position: new Vector3(-xOffset, 0, -4),
+      position: new Vector3(-xOffset, 0, -2 * layerDistance),
     },
   }
 }
@@ -61,8 +61,8 @@ export const ParallaxWrapped = (props: PropsWithChildren<ParallaxProps>) => {
   const [layerMap3D, setLayerMap3D] = useState<LayerMap3D>()
 
   useEffect(() => {
-    setLayerMap3D(computeParallax(quaternion))
-  }, [quaternion])
+    setLayerMap3D(computeParallax(quaternion, props.layerDistance ?? 2, props.influence ?? 1))
+  }, [quaternion, props.layerDistance])
 
   return (
     <>

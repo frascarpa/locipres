@@ -22,6 +22,7 @@ function StaticLights() {
     <>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
+      <directionalLight />
     </>
   )
 }
