@@ -1,7 +1,7 @@
 import { FunctionComponent, useContext, useRef, useState } from 'react'
 import { ThreeElements, useFrame } from '@react-three/fiber'
 import { Quaternion } from 'three'
-import { GyroContext } from './gyro'
+import { Gyro, GyroContext } from './gyro'
 
 interface BoxProps {
   scale?: number;
@@ -19,8 +19,6 @@ export const Box: FunctionComponent<BoxProps> = (props) => {
 
   const [hovered, hover] = useState(false)
 
-  const quaternion = useContext(GyroContext)
-
   // Subscribe this component to the render-loop, manipulate the mesh every frame
   useFrame((state, delta) => {
     if (ref?.current && props?.autorotate) {
@@ -35,10 +33,26 @@ export const Box: FunctionComponent<BoxProps> = (props) => {
       scale={props.scale ?? 1}
       rotation={props.initialRotation ?? [0, 0, 0]}
       position={props.position ?? [0, 0, 0]}
-      quaternion={quaternion}
     >
       <boxGeometry args={props.size ?? [1, 1, 1]} />
       <meshNormalMaterial color={hovered ? 'hotpink' : 'orange'} />
     </mesh>
+  )
+}
+
+export function GyroBox() {
+  const quaternion = useContext(GyroContext)
+
+  return (
+    <Gyro>
+      <GyroBoxWrapped />
+    </Gyro>
+  )
+}
+export function GyroBoxWrapped() {
+  const quaternion = useContext(GyroContext)
+
+  return (
+    <Box size={1, 2, 1} />
   )
 }

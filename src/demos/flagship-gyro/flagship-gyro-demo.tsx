@@ -1,24 +1,20 @@
 import { Scene } from '@/components/scene'
-import { Box } from '@/components/box'
-import { Watch } from '@/components/watch'
+import { GyroBox } from '@/components/box'
+import { GyroWatch } from '@/components/watch'
 import { Gyro } from '@/components/gyro'
 
-export function GyroBox() {
+export function GyroBoxDemo() {
   return (
     <Scene>
-      <Gyro>
-        <Box size={[1, 2, 1]} />
-      </Gyro>
+      <GyroBox />
     </Scene>
   )
 }
 
-export function GyroWatch() {
+export function GyroWatchDemo() {
   return (
     <Scene>
-      <Gyro>
-        <Watch scale={0.0045} />
-      </Gyro>
+      <GyroWatch />
     </Scene>
   )
 }
