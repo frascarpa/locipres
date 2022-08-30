@@ -1868,6 +1868,13 @@
   dependencies:
     "@types/jest" "*"
 
+"@types/three@^0.143.2":
+  version "0.143.2"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.143.2.tgz#e3c3d121cbe6b868e226d91ea24896b7cdc5d4eb"
+  integrity sha512-HjsRWvd6rsXViFeOdU97/pHNDQknzJbFI0/5MrQ0joOlK0uixQH40sDJs/LwkNHhFYUvVENXAUQdKDeiQChHDw==
+  dependencies:
+    "@types/webxr" "*"
+
 "@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
@@ -1879,6 +1886,11 @@
   integrity sha512-tJz1DcXsSpMNPpomLcOrBk0yhSDSnFd4nFQ3eG2a4s76lHmGpL4I+w2WuV1K3p/fVozBUSD0kCFJ3MNBwv35EA==
   dependencies:
     typescript "^2.2.2"
+
+"@types/webxr@*":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@types/webxr/-/webxr-0.5.0.tgz#aae1cef3210d88fd4204f8c33385a0bbc4da07c9"
+  integrity sha512-IUMDPSXnYIbEO2IereEFcgcqfDREOgmbGqtrMpVPpACTU6pltYLwHgVkrnYv0XhWEcjio9sYEfIEzgn3c7nDqA==
 
 "@types/yargs-parser@*":
   version "21.0.0"

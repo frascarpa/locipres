@@ -5,12 +5,14 @@ import './app.css'
 
 import { GyroBoxDemo, GyroWatchDemo } from '@/demos/flagship-gyro/flagship-gyro-demo'
 import { FlagshipDnd } from '@/demos/flagship-dnd/flagship-dnd-demo'
+import { ParallaxDemo } from '@/demos/logo-demo/logo-demo'
 
 const routes: [string, () => JSX.Element][] = [
   ['/', Home],
   ['flag-dnd', FlagshipDnd],
   ['gyro-box', GyroBoxDemo],
   ['gyro-watch', GyroWatchDemo],
+  ['parallax-demo', ParallaxDemo],
 
 ]
 export function App() {

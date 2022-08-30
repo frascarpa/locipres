@@ -2,7 +2,7 @@ import { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import { Vector3, Quaternion, Euler } from 'three'
 import throttle from 'lodash/throttle'
 
-export const GyroContext = createContext(null)
+export const GyroContext = createContext(new Quaternion())
 
 interface GyroProps {
   frequency?: number;

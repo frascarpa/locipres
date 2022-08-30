@@ -1,9 +1,15 @@
 import { Canvas } from '@react-three/fiber'
 import { FunctionComponent } from 'react'
 
-export const Scene: FunctionComponent = (props) => {
+interface SceneProps {
+  initialPosition?: [number, number, number]
+}
+export const Scene: FunctionComponent<SceneProps> = (props) => {
   return (
-    <Canvas style={Object.assign({}, { 'touch-action': 'none' })}>
+    <Canvas
+      style={Object.assign({}, { 'touch-action': 'none' })}
+      camera={props.initialPosition ? { position: props.initialPosition } : undefined}
+    >
       <color attach='background' args={['#141414']} />
       <StaticLights />
       {props.children}
